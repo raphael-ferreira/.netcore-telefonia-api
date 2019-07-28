@@ -14,7 +14,7 @@ namespace TelefoniaAPI.Models
         public int Minutos { get; set; }
         public int Franquia { get; set; }
         public double Valor { get; set; }
-        public Tipo Tipo { get; set; }
+        public TipoPlano Tipo { get; set; }
         public string Operadora { get; set; }
 
         public Plano()
@@ -22,7 +22,7 @@ namespace TelefoniaAPI.Models
 
         }
 
-        public Plano(int codigo, int minutos, int franquia, double valor, Tipo tipo, string operadora)
+        public Plano(int codigo, int minutos, int franquia, double valor, TipoPlano tipo, string operadora)
         {
             Codigo = codigo;
             Minutos = minutos;

@@ -47,6 +47,46 @@ namespace TelefoniaAPI.Controllers
             return Ok(plano);
         }
 
+        // GET: api/Planos/tipo/tipoDoPlano
+        [Route("[action]/{tipo}")]
+        [HttpGet]
+        public async Task<IActionResult> Tipo(string tipo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var plano = await _context.Planos.Where(p => p.Tipo.ToString().ToUpper() == tipo.ToUpper()).ToListAsync();
+
+            if (plano == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plano);
+        }
+
+        // GET: api/Planos/operadora/nomeDaOperadora
+        [Route("[action]/{operadora}")]
+        [HttpGet]
+        public async Task<IActionResult> Operadora(string operadora)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var plano = await _context.Planos.Where(p => p.Operadora.ToUpper() == operadora.ToUpper()).ToListAsync();
+
+            if (plano == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plano);
+        }
+
         // PUT: api/Planos/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlano([FromRoute] int id, [FromBody] Plano plano)
