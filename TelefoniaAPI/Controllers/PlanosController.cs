@@ -101,6 +101,16 @@ namespace TelefoniaAPI.Controllers
                 return BadRequest();
             }
 
+            if (!await OperadoraIsValidAsync(plano))
+            {
+                return BadRequest("Operadora não existente");
+            }
+
+            if (!await TipoIsValidAsync(plano))
+            {
+                return BadRequest("Tipo não existente");
+            }
+
             _context.Entry(plano).State = EntityState.Modified;
 
             try
@@ -109,7 +119,7 @@ namespace TelefoniaAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlanoExists(id))
+                if (!await PlanoExistsAsync(id))
                 {
                     return NotFound();
                 }
@@ -129,6 +139,16 @@ namespace TelefoniaAPI.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            if (!await OperadoraIsValidAsync(plano))
+            {
+                return BadRequest("Operadora não existente");
+            }
+
+            if (!await TipoIsValidAsync(plano))
+            {
+                return BadRequest("Tipo não existente");
             }
 
             _context.Planos.Add(plano);
@@ -158,9 +178,19 @@ namespace TelefoniaAPI.Controllers
             return Ok(plano);
         }
 
-        private bool PlanoExists(int id)
+        private async Task<bool> PlanoExistsAsync(int id)
         {
-            return _context.Planos.Any(e => e.Codigo == id);
+            return await _context.Planos.AnyAsync(e => e.Codigo == id);
+        }
+
+        private async Task<bool> TipoIsValidAsync(Plano plano)
+        {
+            return await _context.Planos.AnyAsync(p => p.Tipo == plano.Tipo);            
+        }
+
+        private async Task<bool> OperadoraIsValidAsync(Plano plano)
+        {
+            return await _context.Operadoras.AnyAsync(p => p.Descricao == plano.Operadora);           
         }
     }
 }

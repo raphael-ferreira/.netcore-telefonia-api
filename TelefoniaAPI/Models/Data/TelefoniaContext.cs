@@ -12,7 +12,13 @@ namespace TelefoniaAPI.Models.Data
             : base(options)
         {
         }
-
+        
+        public DbSet<Operadora> Operadoras { get; set; }
         public DbSet<Plano> Planos { get; set; }
+
+        public TelefoniaContext(DbSet<Operadora> operadoras)
+        {
+            Operadoras = operadoras;
+        }
     }
 }

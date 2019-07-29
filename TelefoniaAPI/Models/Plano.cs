@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using TelefoniaAPI.Models.Enums;
@@ -13,8 +14,8 @@ namespace TelefoniaAPI.Models
         public int Codigo { get; set; }
         public int Minutos { get; set; }
         public int Franquia { get; set; }
-        public double Valor { get; set; }
-        public TipoPlano Tipo { get; set; }
+        public double Valor { get; set; }        
+        public string Tipo { get; set; }
         public string Operadora { get; set; }
 
         public Plano()
@@ -22,14 +23,14 @@ namespace TelefoniaAPI.Models
 
         }
 
-        public Plano(int codigo, int minutos, int franquia, double valor, TipoPlano tipo, string operadora)
+        public Plano(int codigo, int minutos, int franquia, double valor, TipoPlano tipo, Operadora operadora)
         {
             Codigo = codigo;
             Minutos = minutos;
             Franquia = franquia;
             Valor = valor;
-            Tipo = tipo;
-            Operadora = operadora;
+            Tipo = tipo.ToString();
+            Operadora = operadora.Descricao;
         }
     }
 }
