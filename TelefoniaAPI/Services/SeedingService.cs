@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TelefoniaAPI.Models;
 using TelefoniaAPI.Models.Data;
 using TelefoniaAPI.Models.Enums;
