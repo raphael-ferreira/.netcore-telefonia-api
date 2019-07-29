@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace TelefoniaAPI.Models.Data
 {
@@ -12,12 +8,14 @@ namespace TelefoniaAPI.Models.Data
             : base(options)
         {
         }
-        
+
         public DbSet<Operadora> Operadoras { get; set; }
         public DbSet<Plano> Planos { get; set; }
+        public DbSet<DDD> DDDs { get; set; }
 
-        public TelefoniaContext(DbSet<Operadora> operadoras)
+        public TelefoniaContext(DbSet<DDD> ddds, DbSet<Operadora> operadoras)
         {
+            DDDs = ddds;
             Operadoras = operadoras;
         }
     }
