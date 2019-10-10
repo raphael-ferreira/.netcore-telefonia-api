@@ -38,3 +38,4 @@
 
 <hr>
 > Desenvolvido por: Raphael D. Ferreira - 29/07/2019
+> Última atualização - 09/10/2019

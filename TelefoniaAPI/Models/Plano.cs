@@ -13,14 +13,14 @@ namespace TelefoniaAPI.Models
         public double Valor { get; set; }        
         public string Tipo { get; set; }
         public string Operadora { get; set; }
-        public ICollection<DDD> DDDs { get; set; }
+        public List<DDD> DDDs { get; set; }
 
         public Plano()
         {
 
         }
 
-        public Plano(int codigo, int minutos, int franquia, double valor, TipoPlano tipo, Operadora operadora, ICollection<DDD> ddd)
+        public Plano(int codigo, int minutos, int franquia, double valor, TipoPlano tipo, Operadora operadora, List<int> ddd)
         {
             Codigo = codigo;
             Minutos = minutos;
@@ -28,7 +28,11 @@ namespace TelefoniaAPI.Models
             Valor = valor;
             Tipo = tipo.ToString();
             Operadora = operadora.Descricao;
-            DDDs = ddd;
+
+            List<DDD> list = new List<DDD>();
+            ddd.ForEach(d => list.Add(new DDD(d)));
+
+            DDDs = list;
         }
     }
 }

@@ -33,3 +33,4 @@ Para rodar a API, basta abrir a solução (.sln) no visual studio e executar (Ctrl
 ___________________________________________________________________________
 
 /**** Raphael D. Ferreira - 29/07/2019  ****/
+/****   Última atualizaçao: 09/10/2019 	****/

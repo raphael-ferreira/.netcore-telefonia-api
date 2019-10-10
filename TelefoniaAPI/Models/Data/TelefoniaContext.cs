@@ -10,13 +10,6 @@ namespace TelefoniaAPI.Models.Data
         }
 
         public DbSet<Operadora> Operadoras { get; set; }
-        public DbSet<Plano> Planos { get; set; }
-        public DbSet<DDD> DDDs { get; set; }
-
-        public TelefoniaContext(DbSet<DDD> ddds, DbSet<Operadora> operadoras)
-        {
-            DDDs = ddds;
-            Operadoras = operadoras;
-        }
+        public DbSet<Plano> Planos { get; set; }        
     }
 }

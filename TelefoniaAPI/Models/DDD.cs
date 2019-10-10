@@ -4,7 +4,8 @@ namespace TelefoniaAPI.Models
 {
     public class DDD
     {
-        [Key]
+        [Key]       
+        public int _id { get; set; }
         public int CodigoDDD { get; set; }
 
         public DDD(int codigoDDD)

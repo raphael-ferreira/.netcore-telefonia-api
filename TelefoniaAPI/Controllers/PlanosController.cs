@@ -21,9 +21,34 @@ namespace TelefoniaAPI.Controllers
 
         // GET: api/Planos
         [HttpGet]
-        public IEnumerable<Plano> GetPlanos()
-        {
-            return _context.Planos;
+        public async Task<IActionResult> GetPlanos()
+        {            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var plano = await _context.Planos
+                .Select(p => new
+                {
+                    p.Codigo,
+                    p.Minutos,
+                    p.Franquia,
+                    p.Valor,
+                    p.Tipo,
+                    p.Operadora,
+                    DDDs = p.DDDs.Select(d => new
+                    {
+                        d.CodigoDDD
+                    })
+                }).ToListAsync();
+
+            if (plano == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plano);
         }
 
         // GET: api/Planos/5
@@ -35,7 +60,22 @@ namespace TelefoniaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var plano = await _context.Planos.FindAsync(id);
+            var plano = await _context.Planos
+                .Where(p => p.Codigo == id)
+                .Select(p => new
+                {
+                    p.Codigo,
+                    p.Minutos,
+                    p.Franquia,
+                    p.Valor,
+                    p.Tipo,
+                    p.Operadora,
+                    DDDs = p.DDDs.Select(d => new
+                    {
+                        d.CodigoDDD
+                    })
+                })
+                .ToListAsync();
 
             if (plano == null)
             {
@@ -55,7 +95,21 @@ namespace TelefoniaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var plano = await _context.Planos.Where(p => p.Tipo.ToString().ToUpper() == tipo.ToUpper()).ToListAsync();
+            var plano = await _context.Planos
+                .Where(p => p.Tipo.ToString().ToUpper() == tipo.ToUpper())
+                .Select(p => new
+                {
+                    p.Codigo,
+                    p.Minutos,
+                    p.Franquia,
+                    p.Valor,
+                    p.Tipo,
+                    p.Operadora,
+                    DDDs = p.DDDs.Select(d => new
+                    {
+                        d.CodigoDDD
+                    })
+                }).ToListAsync();
 
             if (plano == null)
             {
