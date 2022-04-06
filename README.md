@@ -1,6 +1,6 @@
 # .netcore-telefonia-api
 
-<h3>Projeto desenvolvido em .NET Core</h3>
+<h3>API desenvolvida em .NET Core</h3>
 
 <h4>Conteúdo do projeto</h4>
 
@@ -22,20 +22,17 @@
 
 <h5>Método GET:</h5>
 
-- Listagem de planos: https://localhost:44309/api/planos
-- Listagem de operadoras: https://localhost:44309/api/operadoras
-- Consulta de planos por código: https://localhost:44309/api/planos/7
-- Consulta de planos por tipo: https://localhost:44309/api/planos/tipo/controle
-- Consulta de planos por operadora: https://localhost:44309/api/planos/operadora/oi
-> "7", "controle", e "oi" são passados por parâmetros. */
+- Listagem de planos: `/planos`
+- Listagem de operadoras: `/operadoras`
+- Consulta de planos por código: `/planos/:id`
+- Consulta de planos por tipo: `/planos/tipo/:tipo`
+- Consulta de planos por operadora: `/planos/operadora/:nome`
 
 <h5>Métodos POST, PUT e DELETE:</h5>
 
-- Para cadastro, atualização e remoção: https://localhost:44309/api/planos/5
-> 5 é o código passado por parâmetro.
+- Para cadastro, atualização e remoção: `/planos/:id`
 
 - <b>`Para rodar a API, basta abrir a solução (.sln) no visual studio e executar (Ctrl+F5) para iniciar.`</b>
 
 <hr>
-> Desenvolvido por: Raphael D. Ferreira - 29/07/2019
-> Última atualização - 09/10/2019
+> Desenvolvido por: Raphael D. Ferreira
